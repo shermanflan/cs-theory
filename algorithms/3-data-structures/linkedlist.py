@@ -1,8 +1,17 @@
+"""
+Generally better than a list/array when random-access is not required but
+random inserts are.
+TODO: doesn't seem to be a linked list built-in.
+"""
 from collections import defaultdict
 
 
 class Node(object):
-    """Singly/Doubly linked"""
+    """
+    Singly/Doubly linked
+    TODO:
+    - Move to LinkedList class as an inner class `__Node`
+    """
 
     def __init__(self, data):
         super().__init__()
@@ -17,7 +26,9 @@ class Node(object):
 # TODO:
 # Opt1: Adding and maintaining self.tail would make append more efficient.
 # Opt2: Adding and maintaining self.count would make size() more efficient.
+# Opt3: How would using a dummy head simplify operations?
 # Opt4: Create a doubly linked list class.
+# Opt5: Add constructor accepting a data sequence.
 class LinkedList(object):
     """Wrapper for node"""
     def __init__(self, data):
@@ -41,8 +52,15 @@ class LinkedList(object):
             i += 1
 
         return cur
+    
+    def set(self, data):
+        pass
 
     def insert(self, data):
+        """
+        This is more efficient than using arrays/list data structures where inserts
+        require copying elements to make room for the new element (O(n)).
+        """
         newHead = Node(data)
         newHead.next = self.head
         self.head = newHead
@@ -81,6 +99,9 @@ class LinkedList(object):
         return self._append_node(end)
 
     def _append_node(self, data):
+        """
+        TODO: Use tail reference for optimization.
+        """
         tmp = self.head
 
         while tmp.next:
@@ -181,6 +202,10 @@ class LinkedList(object):
         return False
 
     def find_cycle_start(self):
+        """
+        Turtle and hare will meet when hare has traversed 2*turtle steps.
+        
+        """
         turtle = self.head
         hare = self.head
 
@@ -202,7 +227,6 @@ class LinkedList(object):
 
         return None
 
-    # TODO: Recursively
     @staticmethod
     def reverse(ll):
         """ In one pass, no stack
@@ -224,6 +248,27 @@ class LinkedList(object):
 
         return prev
 
+    @staticmethod
+    def reverseRecursive(head):
+        """
+        Main idea is to break down the list into a head and rest of list.
+        Another key insight is that the head.next is still pointing to the
+        end of the sorted rest of list and can be used to append the old head
+        to the end. Less performant than iteration due to stack trace calls
+        and is purely an academic exercise.
+
+        TODO:
+        - Add test case
+        """
+        if not head or not head.next:
+            return head
+
+        newHead = LinkedList.reverseRecursive(head.next)
+        (head.next).next = head
+        head.next = None
+
+        return newHead
+    
     @staticmethod
     def distinct(ll):
         """
