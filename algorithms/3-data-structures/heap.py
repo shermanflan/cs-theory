@@ -1,4 +1,6 @@
-
+"""
+NOTE: Use python's heapq (i.e. min heap) built-in for interviews.
+"""
 
 class HeapNode(object):
 
@@ -12,7 +14,7 @@ class HeapNode(object):
 
         return self.key < other.key
 
-    def __repr__(self):
+    def __str__(self):
         return f"{self.key}: {self.val} @{self.location}"
 
 

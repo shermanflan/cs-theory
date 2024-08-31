@@ -3,7 +3,8 @@ class TrieException(Exception):
 
 
 """
-Trie: An n-ary trees where each node stores a single character.
+Trie: An n-ary trees where each node stores a single character. Not
+optimal if many deletes are required.
 """
 
 

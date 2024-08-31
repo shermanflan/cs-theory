@@ -26,8 +26,6 @@ class GraphException(Exception):
 
 
 # TODO: Also create a simple Graph representation that's easy to remember.
-# Maybe Graph of Dictionary(uid, Node), Node of Dictionary(uid, (Edge, Node))
-# Or, list of named tuple (p, q, e) where index represents ith node in graph.
 class Graph:
     """
     DATA-003
@@ -118,5 +116,5 @@ class Edge:
     def opposite(self, v):
         return self.destination if v is self.origin else self.origin
 
-    def __repr__(self):
+    def __str__(self):
         return f"{self.origin}=>{self.destination}"
