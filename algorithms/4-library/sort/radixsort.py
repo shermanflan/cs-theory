@@ -5,7 +5,7 @@ def radix_sort(arr):
     """
     2 versions
     MSD: Can start from the left
-    LSD: Can start from the right (shown here)
+    LSD: Can start from the right (shown here and canonical)
 
     https://www.geeksforgeeks.org/radix-sort/
 
