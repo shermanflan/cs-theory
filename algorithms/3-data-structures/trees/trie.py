@@ -4,7 +4,10 @@ class TrieException(Exception):
 
 """
 Trie: An n-ary trees where each node stores a single character. Not
-optimal if many deletes are required.
+optimal if many deletes are required. You should be able to create a simple
+Trie data structure on the fly. 
+
+TODO: See the basic Leetcode implementation for reference.
 """
 
 
